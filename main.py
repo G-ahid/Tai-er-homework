@@ -41,6 +41,25 @@ def main() -> None:
                 for i in books_indecies:
                     print(books[i].str)
             
+            case 3:
+                c = input("Language : ")
+                books_indecies = sort([book.language for book in books], c)
+                if not books_indecies:
+                    print("No books found.")
+                    continue
+                print(f"Books founds ({len(books_indecies)})")
+                for i in books_indecies:
+                    print(books[i].str)
+
+            case 4:
+                newest = books[0]
+                for book in books:
+                    if book.year > olders.year:
+                        newest = book
+
+                print("The newest book is : ")
+                print(newest.str)
+
             case 6:
                 print("\nThank you for using my program !")
                 return

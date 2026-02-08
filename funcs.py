@@ -19,6 +19,6 @@ def removeDuplicates(l:list[Any]) -> list[Any]:
 def sort(lst:list, item:str) -> list[int]:
     result:list[int] = []
     for i in range(len(lst)-1):
-        if item in lst[i]:
+        if item.lower() in lst[i].lower():
             result.append(i)
     return result

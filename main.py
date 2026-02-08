@@ -1,3 +1,4 @@
+import enum
 from funcs import sort
 from load import Book
 from load import loadCSV
@@ -19,6 +20,10 @@ def main() -> None:
     while True:
         print(menu)
         c:str = toInt(input())
+        if c is None:
+            print("Invalid option")
+            continue
+
         match c:
             case 1:
                 print("Listing all books...\n")
@@ -59,6 +64,29 @@ def main() -> None:
 
                 print("The newest book is : ")
                 print(newest.str)
+
+            case 5:
+                c = input("Search : ")
+                books_indecies = sort([book.name for book in books], c)
+                if not books_indecies:
+                    print("No books found with that name.")
+                    continue
+                _books = [books[i] for i in books_indecies]
+                if len(_books) == 1:
+                    print("Book found :")
+                    print(_books[0].str)
+                    continue
+
+                for i,book in enumerate(_books):
+                    print(i+1,'. ',book.name)
+                while True:
+                    c = toInt(input(f"Found {len(_books)}, which one do you want : "))
+                    if c is None or c < 1 or c > len(_books):
+                        print("Invalid choice, try again.")
+                        continue
+                    
+                    print(_books[c - 1].str)
+                    break
 
             case 6:
                 print("\nThank you for using my program !")

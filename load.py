@@ -7,9 +7,9 @@ class Book:
     """
         Simple Book class
     """
-    def __init__(self, Name:str, Authors:list[str], Original_language:str, year:str,Genre:str,Appoximated_sales:str) -> None:
+    def __init__(self, Name:str, Authors:str, Original_language:str, year:str,Genre:str,Appoximated_sales:str) -> None:
         self.name:str = Name
-        self.authors:list[str] = Authors
+        self.authors:str = Authors
         self.language:str = Original_language
         self.year:int = int(year)
         self.genre:str = Genre

@@ -28,7 +28,7 @@ def sort(lst:list[str], item:str) -> list[int]:
         sorts a list, and returns the indicies of the found elements
     """
     result:list[int] = []
-    for i in range(len(lst)-1):
+    for i in range(len(lst)):
         if item.lower() in lst[i].lower():
             result.append(i)
     return result

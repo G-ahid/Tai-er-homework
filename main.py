@@ -1,5 +1,5 @@
 from load import loadCSV, Book
-from funcs import toInt, removeDuplicates, sort
+from funcs import toInt, removeDuplicates, find
 from random import randint
 from Color import color
 
@@ -7,7 +7,7 @@ menu:str = f"""
 {color.italic+color.bold}Menu:
   ├────{color.green}1.{color.white+color.italic+color.bold} Explore the content of the file
   ├────{color.green}2.{color.white+color.italic+color.bold} View the different book genres in the file
-  ├────{color.green}3.{color.white+color.italic+color.bold} Sort the books by language
+  ├────{color.green}3.{color.white+color.italic+color.bold} Find the books by language
   ├────{color.green}4.{color.white+color.italic+color.bold} Find the latest published book
   ├────{color.green}5.{color.white+color.italic+color.bold} Get information about a book
   ├────{color.green}6.{color.white+color.italic+color.bold} Random book
@@ -30,7 +30,7 @@ def main() -> None:
             case 1: # Explore the content of the file
                 print(color.yellow,color.bold,"Listing all books...\n",color.clear)
                 for book in books:
-                    print(book.str)
+                    print(book)
             case 2: # View the different book genres in the file
                 # Show available Genres
                 genres:list[str] = removeDuplicates([book.genre for book in books])
@@ -41,24 +41,24 @@ def main() -> None:
                 print(color.yellow,"available genres are : ",color.clear,genres_str)
                 # Ask the user for which one he likes
                 c = input(color.bold+"\nWanted genre : "+color.clear)
-                books_indecies = sort([book.genre for book in books], c)
+                books_indecies = find([book.genre for book in books], c)
                 # Show result
                 if not books_indecies:
                     print("No books found.")
                     continue
                 print(color.yellow,color.bold ,f"Books found ({len(books_indecies)}) : ",color.clear)
                 for i in books_indecies:
-                    print(books[i].str)
+                    print(books[i])
             
-            case 3: # Sort the books by language
+            case 3: # Find the books by language
                 c = input(color.italic+"Language : "+color.clear)
-                books_indecies = sort([book.language for book in books], c)
+                books_indecies = find([book.language for book in books], c)
                 if not books_indecies:
                     print(color.yellow,"No books found.",color.clear)
                     continue
                 print(color.yellow,f"Books founds ({len(books_indecies)})",color.clear)
                 for i in books_indecies:
-                    print(books[i].str)
+                    print(books[i])
 
             case 4: # Find the latest published book
                 newest = books[0]
@@ -67,12 +67,12 @@ def main() -> None:
                         newest = book
 
                 print(color.yellow,"The newest book is : ",color.clear)
-                print(newest.str)
+                print(newest)
 
             case 5: # Get information about a book 
                 # Get search query
                 c = input(color.bold+"Search : "+color.clear)
-                books_indecies = sort([book.name for book in books], c)
+                books_indecies = find([book.name for book in books], c)
                 # No books found
                 if not books_indecies:
                     print(color.yellow,"No books found with that name.",color.clear)
@@ -82,7 +82,7 @@ def main() -> None:
                 # If only 1 book matches the quey
                 if len(_books) == 1:
                     print(color.yellow,"Book found :",color.clear)
-                    print(_books[0].str)
+                    print(_books[0])
                     continue
                 # List all the matches
                 for i,book in enumerate(_books):
@@ -95,7 +95,7 @@ def main() -> None:
                         print(color.bold,color.red,"Invalid choice, try again.",color.clear)
                         continue
                     # Show the desired book
-                    print(_books[c - 1].str)
+                    print(_books[c - 1])
                     break
 
             case 6: # Random 
@@ -106,7 +106,7 @@ def main() -> None:
                 suffix = suffixs[r] if i < 2 else 'th'
                 # Output the result
                 print(color.bold,color.yellow,f"Showing the {i+1}{suffix} book...\n",color.clear)
-                print(books[i].str)
+                print(books[i])
 
             case 7: # Quit
                 print(color.magenta,color.bold,color.italic,"\nThank you for using my program !")

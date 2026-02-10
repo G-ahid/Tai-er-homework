@@ -23,9 +23,9 @@ def removeDuplicates(l:list[Any]) -> list[Any]:
     
     return lst
 
-def sort(lst:list[str], item:str) -> list[int]:
+def find(lst:list[str], item:str) -> list[int]:
     """
-        sorts a list, and returns the indicies of the found elements
+        Returns the indicies of the found elements
     """
     result:list[int] = []
     for i in range(len(lst)):

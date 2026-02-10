@@ -15,8 +15,8 @@ class Book:
         self.genre:str = Genre
         self.salses:str = Appoximated_sales
     
-    @property
-    def str(self) -> str:
+    # @property
+    def __str__(self) -> str:
         color
         result = f"{color.clear+color.bold+color.blue+self.name} :\n"
         result += f"\t{color.clear+color.blue}├──Author(s) :{color.white+color.italic} {self.authors}\n"
@@ -54,3 +54,5 @@ def loadCSV(filename:str = "Books.csv") -> list[Book]:
             ))
         return books
 
+
+print(loadCSV()[0])

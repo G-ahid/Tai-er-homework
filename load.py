@@ -15,17 +15,21 @@ class Book:
         self.year:int = int(year)
         self.genre:str = Genre
         self.salses:int = StringToNum(Appoximated_sales)
+        self._cache:str = ""
     
     # @property
     def __str__(self) -> str:
-        color
-        result = f"{color.clear+color.bold+color.blue+self.name} :\n"
-        result += f"\t{color.clear+color.blue}├──Author(s) :{color.white+color.italic} {self.authors}\n"
-        result += f"\t{color.clear+color.blue}├──Original language :{color.white+color.italic} {self.language}\n"
-        result += f"\t{color.clear+color.blue}├──Year of publication :{color.white+color.italic} {self.year}\n"
-        result += f"\t{color.clear+color.blue}├──Genre :{color.white+color.italic} {self.genre}\n"
-        result += f"\t{color.clear+color.blue}└──Approximate sales :{color.white+color.italic} {NumToString(self.salses)}"
-        return result
+        if self._cache == "":
+            result = f"{color.clear+color.bold+color.blue+self.name} :\n"
+            result += f"\t{color.clear+color.blue}├──Author(s) :{color.white+color.italic} {self.authors}\n"
+            result += f"\t{color.clear+color.blue}├──Original language :{color.white+color.italic} {self.language}\n"
+            result += f"\t{color.clear+color.blue}├──Year of publication :{color.white+color.italic} {self.year}\n"
+            result += f"\t{color.clear+color.blue}├──Genre :{color.white+color.italic} {self.genre}\n"
+            result += f"\t{color.clear+color.blue}└──Approximate sales :{color.white+color.italic} {NumToString(self.salses)}"
+            self._cache = result
+            return result
+        else:
+            return self._cache
 
     
 

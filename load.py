@@ -54,12 +54,3 @@ def loadCSV(filename:str = "Books.csv") -> list[Book]:
             ))
         return books
 
-if __name__ == "__main__":
-    books = loadCSV()
-    for book in books:
-        print(book.name)
-        print(book.authors, ' - ',end='')
-        print(book.language, ' - ',end='')
-        print(book.year, ' - ',end='')
-        print(book.genre, ' - ',end='')
-        print(book.salses, ' - ')

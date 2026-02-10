@@ -32,15 +32,17 @@ def main() -> None:
                 for book in books:
                     print(book.str)
             case 2: # View the different book genres in the file
+                # Show available Genres
                 genres:list[str] = removeDuplicates([book.genre for book in books])
                 genres_str:str = ""
                 for genre in genres:
                     genres_str += genre.strip() + ", "
 
                 print(color.yellow,"available genres are : ",color.clear,genres_str)
-
+                # Ask the user for which one he likes
                 c = input(color.bold+"\nWanted genre : "+color.clear)
                 books_indecies = sort([book.genre for book in books], c)
+                # Show result
                 if not books_indecies:
                     print("No books found.")
                     continue
@@ -68,30 +70,43 @@ def main() -> None:
                 print(newest.str)
 
             case 5: # Get information about a book 
+                # Get search query
                 c = input(color.bold+"Search : "+color.clear)
                 books_indecies = sort([book.name for book in books], c)
+                # No books found
                 if not books_indecies:
                     print(color.yellow,"No books found with that name.",color.clear)
                     continue
+                # Get all books that match the query
                 _books = [books[i] for i in books_indecies]
+                # If only 1 book matches the quey
                 if len(_books) == 1:
                     print(color.yellow,"Book found :",color.clear)
                     print(_books[0].str)
                     continue
-
+                # List all the matches
                 for i,book in enumerate(_books):
                     print(i+1,'. ',book.name)
+                # Loop, to ask which book the user wants
                 while True:
                     c = toInt(input(color.yellow+f"Found {len(_books)}, which one do you want : ")+color.clear)
+                    # If the input is not a number, or it's out of bounds
                     if c is None or c < 1 or c > len(_books):
                         print(color.bold,color.red,"Invalid choice, try again.",color.clear)
                         continue
-                    
+                    # Show the desired book
                     print(_books[c - 1].str)
                     break
 
-            case 6: # Random book
-                print(books[randint(0, len(books)) - 1].str)
+            case 6: # Random 
+                # Random number
+                i:int = randint(0, len(books)-1)
+                # Get the number suffix
+                suffixs:list[str] = ['st','nd','rd']
+                suffix = suffixs[r] if i < 2 else 'th'
+                # Output the result
+                print(color.bold,color.yellow,f"Showing the {i+1}{suffix} book...\n",color.clear)
+                print(books[i].str)
 
             case 7: # Quit
                 print(color.magenta,color.bold,color.italic,"\nThank you for using my program !")

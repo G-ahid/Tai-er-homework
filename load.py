@@ -2,6 +2,7 @@
 # Book,Author(s),Original language,year of publication,Genre,Approximate sales
 
 from Color import color
+from funcs import StringToNum, NumToString
 
 class Book:
     """
@@ -13,7 +14,7 @@ class Book:
         self.language:str = Original_language
         self.year:int = int(year)
         self.genre:str = Genre
-        self.salses:str = Appoximated_sales
+        self.salses:int = StringToNum(Appoximated_sales)
     
     # @property
     def __str__(self) -> str:
@@ -23,7 +24,7 @@ class Book:
         result += f"\t{color.clear+color.blue}├──Original language :{color.white+color.italic} {self.language}\n"
         result += f"\t{color.clear+color.blue}├──Year of publication :{color.white+color.italic} {self.year}\n"
         result += f"\t{color.clear+color.blue}├──Genre :{color.white+color.italic} {self.genre}\n"
-        result += f"\t{color.clear+color.blue}└──Approximate sales :{color.white+color.italic} {self.salses}"
+        result += f"\t{color.clear+color.blue}└──Approximate sales :{color.white+color.italic} {NumToString(self.salses)}"
         return result
 
     

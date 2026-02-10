@@ -64,6 +64,9 @@ def StringToNum(n:str) -> int:
     return toIntForce(n)
 
 def NumToString(n:int) -> str:
+    """
+        turns 10000 -> 10 thousand
+    """
     i = -1
     while n > 1000:
         n /= 1000

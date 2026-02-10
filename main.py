@@ -5,13 +5,13 @@ from Color import color
 
 menu:str = f"""
 {color.italic+color.bold}Menu:
-  └──{color.green}1.{color.white+color.italic+color.bold} Explore the content of the file
-  └──{color.green}2.{color.white+color.italic+color.bold} View the different book genres in the file
-  └──{color.green}3.{color.white+color.italic+color.bold} Sort the books by language
-  └──{color.green}4.{color.white+color.italic+color.bold} Find the latest published book
-  └──{color.green}5.{color.white+color.italic+color.bold} Get information about a book
-  └──{color.green}6.{color.white+color.italic+color.bold} Random book
-  └──{color.green}7.{color.white+color.italic+color.bold} Quit
+  ├────{color.green}1.{color.white+color.italic+color.bold} Explore the content of the file
+  ├────{color.green}2.{color.white+color.italic+color.bold} View the different book genres in the file
+  ├────{color.green}3.{color.white+color.italic+color.bold} Sort the books by language
+  ├────{color.green}4.{color.white+color.italic+color.bold} Find the latest published book
+  ├────{color.green}5.{color.white+color.italic+color.bold} Get information about a book
+  ├────{color.green}6.{color.white+color.italic+color.bold} Random book
+  └────{color.green}7.{color.white+color.italic+color.bold} Quit
 """
 
 def main() -> None:
@@ -39,7 +39,7 @@ def main() -> None:
 
                 print(color.yellow,"available genres are : ",color.clear,genres_str)
 
-                c = input(color.bold,"\nWanted genre : ",color.clear)
+                c = input(color.bold+"\nWanted genre : "+color.clear)
                 books_indecies = sort([book.genre for book in books], c)
                 if not books_indecies:
                     print("No books found.")
@@ -49,7 +49,7 @@ def main() -> None:
                     print(books[i].str)
             
             case 3: # Sort the books by language
-                c = input(color.italic,"Language : ",color.clear)
+                c = input(color.italic+"Language : "+color.clear)
                 books_indecies = sort([book.language for book in books], c)
                 if not books_indecies:
                     print(color.yellow,"No books found.",color.clear)
@@ -68,7 +68,7 @@ def main() -> None:
                 print(newest.str)
 
             case 5: # Get information about a book 
-                c = input(color.bold,"Search : ",color.clear)
+                c = input(color.bold+"Search : "+color.clear)
                 books_indecies = sort([book.name for book in books], c)
                 if not books_indecies:
                     print(color.yellow,"No books found with that name.",color.clear)
@@ -82,7 +82,7 @@ def main() -> None:
                 for i,book in enumerate(_books):
                     print(i+1,'. ',book.name)
                 while True:
-                    c = toInt(input(color.yellow,f"Found {len(_books)}, which one do you want : "),color.clear)
+                    c = toInt(input(color.yellow+f"Found {len(_books)}, which one do you want : ")+color.clear)
                     if c is None or c < 1 or c > len(_books):
                         print(color.bold,color.red,"Invalid choice, try again.",color.clear)
                         continue
